@@ -10,7 +10,7 @@ const InfoCard = ({ img, bgClassName, title, infoText }) => {
                     <img
                         src={img}
                         alt="Album"
-                        className=" w-20 sm:ml-6 mt-6 sm:mt-0"
+                        className=" w-20 sm:ml-6 mt-6 sm:mt-0 w-28"
                     />
                 </figure>
                 <div className="card-body text-left h-48 text-white">
