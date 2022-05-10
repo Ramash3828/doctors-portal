@@ -25,7 +25,7 @@ const Navbar = () => {
         </>
     );
     return (
-        <div className="navbar bg-primary justify-between px-12">
+        <div className="navbar bg-gradient-to-r from-primary to-secondary justify-between px-12">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label className="btn btn-ghost md:hidden">
