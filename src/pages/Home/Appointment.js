@@ -1,19 +1,23 @@
 import React from "react";
-import tretment from "../../assets/images/treatment.png";
+import doctor from "../../assets/images/doctor.png";
+import appointment from "../../assets/images/appointment.png";
 
-const DentalCare = () => {
+const Appointment = () => {
     return (
         <section className="py-24">
             <div class="hero min-h-screen px-12">
                 <div class="hero-content gap-24 flex-col lg:flex-row">
                     <img
-                        className="max-w-lg w-full object-cover rounded-lg shadow-2xl"
-                        src={tretment}
+                        className="max-w-lg w-full object-cover"
+                        src={doctor}
                         alt="Album"
                     />
                     <div className="text-left">
+                        <p3 className="text-primary text-xl mb-3">
+                            Appointment
+                        </p3>
                         <h2 class="card-title text-5xl text-accent">
-                            Exceptional Dental Care, on Your Terms
+                            Make an appointment Today
                         </h2>
                         <p className="text-[16px] my-12">
                             It is a long established fact that a reader will be
@@ -35,4 +39,4 @@ const DentalCare = () => {
     );
 };
 
-export default DentalCare;
+export default Appointment;

@@ -6,7 +6,7 @@ import marker from "../../assets/icons/marker.svg";
 
 const Info = () => {
     return (
-        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-12 px-12">
             <InfoCard
                 bgClassName={`bg-gradient-to-r from-primary to-secondary`}
                 img={clock}
