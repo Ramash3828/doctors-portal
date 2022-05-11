@@ -1,26 +1,42 @@
 import React from "react";
 import chair from "../../assets/images/chair.png";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import { useState } from "react";
+import AvailableAppointment from "./AvailableAppointment";
+import bg from "../../assets/images/bg.png";
+import Footer from "../../Shared/Footer";
 
 const MakeAppointment = () => {
+    const [selected, setSelected] = useState(new Date());
     return (
-        <div class="hero min-h-screen bg-base-200">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-                <img
-                    src={chair}
-                    class="max-w-sm rounded-lg shadow-2xl"
-                    alt=""
-                />
-                <div>
-                    <h1 class="text-5xl font-bold">Box Office News!</h1>
-                    <p class="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                        assumenda excepturi exercitationem quasi. In deleniti
-                        eaque aut repudiandae et a id nisi.
-                    </p>
-                    <button class="btn btn-primary">Get Started</button>
+        <>
+            <div
+                style={{
+                    background: `url(${bg})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+                className="hero min-h-screen "
+            >
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <img
+                        src={chair}
+                        className="max-w-lg rounded-lg shadow-2xl"
+                        alt=""
+                    />
+                    <div>
+                        <DayPicker
+                            mode="single"
+                            selected={selected}
+                            onSelect={setSelected}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+            <AvailableAppointment selected={selected}></AvailableAppointment>
+            <Footer></Footer>
+        </>
     );
 };
 
