@@ -8,7 +8,7 @@ const Appointment = () => {
             style={{ background: `url(${appointment})` }}
             className="my-24"
         >
-            <div class="flex gap-24 items-center px-12">
+            <div className="flex gap-24 items-center px-12">
                 <div className="flex-1 md:block hidden">
                     <img
                         className="mt-[-100px] object-cover w-full"
@@ -17,13 +17,13 @@ const Appointment = () => {
                     />
                 </div>
                 <div className="text-left flex-1 py-12 sm:py-12">
-                    <p3 className="text-primary text-xl font-bold">
+                    <h3 className="text-primary text-xl font-bold">
                         Appointment
-                    </p3>
-                    <h2 class="card-title text-5xl text-white mt-5">
-                        Make an appointment Today
+                    </h3>
+                    <h2 className="card-title text-5xl text-white mt-5">
+                        Make an Appointment Today
                     </h2>
-                    <p className="text-[16px] my-9 text-white">
+                    <p className="text-[16px] my-6 text-white">
                         It is a long established fact that a reader will be
                         distracted by the readable content of a page when
                         looking at its layout. The point of using Lorem Ipsumis
