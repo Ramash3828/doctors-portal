@@ -7,7 +7,7 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/Login/SignUp";
 import MakeAppointment from "./pages/MakeAppointment/MakeAppointment";
 import Navbar from "./Shared/Navbar";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import RequireAuth from "./RequireAuth";
 
 function App() {
     return (
@@ -18,7 +18,11 @@ function App() {
                 <Route path="/about" element={<About></About>}></Route>
                 <Route
                     path="/appointment"
-                    element={<MakeAppointment></MakeAppointment>}
+                    element={
+                        <RequireAuth>
+                            <MakeAppointment></MakeAppointment>
+                        </RequireAuth>
+                    }
                 ></Route>
                 <Route path="/reviews" element={<About></About>}></Route>
                 <Route path="/contact" element={<About></About>}></Route>

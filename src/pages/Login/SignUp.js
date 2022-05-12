@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
@@ -9,9 +11,29 @@ const SignUp = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [createUserWithEmailAndPassword, user, loading, error] =
+        useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, user]);
+
+    if (loading) {
+        return <p>Loading....</p>;
+    }
+    let errMessage;
+    if (error) {
+        return (errMessage = <p className="text-red-500">{error.message}</p>);
+    }
 
     const onSubmit = (data) => {
         console.log(data);
+        createUserWithEmailAndPassword(data.email, data.password);
     };
     return (
         <div className="card mx-auto lg:max-w-lg bg-base-100 shadow-xl mt-4">
@@ -107,6 +129,7 @@ const SignUp = () => {
                         value="Sign Up"
                         className="btn  w-full"
                     />
+                    {errMessage}
                 </form>
                 <p className="text-left">
                     All ready have an account?{" "}
