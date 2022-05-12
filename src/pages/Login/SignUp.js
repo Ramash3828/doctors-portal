@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
     const {
         register,
         handleSubmit,
@@ -15,8 +15,31 @@ const Login = () => {
     return (
         <div className="card mx-auto lg:max-w-lg bg-base-100 shadow-xl mt-4">
             <div className="card-body text-center">
-                <h2 className="text-2xl font-bold uppercase">Login</h2>
+                <h2 className="text-2xl font-bold uppercase">Sign up</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="form-control w-full ">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Your name"
+                            className="input input-bordered w-full "
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: "Name is required",
+                                },
+                            })}
+                        />
+                        <label className="label">
+                            <span className="label-text-alt text-red-500">
+                                {errors.name?.type === "required" && (
+                                    <p>{errors?.name.message}</p>
+                                )}
+                            </span>
+                        </label>
+                    </div>
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -80,14 +103,14 @@ const Login = () => {
                     </div>
                     <input
                         type="submit"
-                        value="Login"
+                        value="Sign Up"
                         className="btn  w-full"
                     />
                 </form>
                 <p className="text-left">
-                    New to Doctors Portal?{" "}
-                    <Link className="text-primary" to="/signup">
-                        Please Sign Up
+                    All ready have an account?{" "}
+                    <Link className="text-primary" to="/login">
+                        Please Login
                     </Link>
                 </p>
             </div>
@@ -95,4 +118,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
