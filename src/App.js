@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/Login/SignUp";
 import MakeAppointment from "./pages/MakeAppointment/MakeAppointment";
 import Navbar from "./Shared/Navbar";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
     return (
