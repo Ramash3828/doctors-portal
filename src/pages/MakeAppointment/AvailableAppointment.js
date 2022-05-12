@@ -10,7 +10,7 @@ const AvailableAppointment = ({ selected }) => {
     const [treatment, setTreatment] = useState(null);
 
     useEffect(() => {
-        fetch("timeSlots.json")
+        fetch("http://localhost:5000/services")
             .then((res) => res.json())
             .then((data) => setTimerSlots(data));
     }, []);
