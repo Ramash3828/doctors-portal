@@ -1,7 +1,10 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const BookingModal = ({ treatment, selected }) => {
+    const [user] = useAuthState(auth);
     const { name, slots } = treatment;
     return (
         <div>
@@ -25,29 +28,31 @@ const BookingModal = ({ treatment, selected }) => {
                         <input
                             disabled
                             type="text"
-                            placeholder="Type here"
                             value={format(selected, "PP")}
                             className="input input-bordered w-full "
                         />
 
                         <select
-                            disabled
                             name="slot"
                             className="input input-bordered w-full "
                         >
-                            {slots.map((slot) => (
-                                <option value={slot}>{slot}</option>
+                            {slots.map((slot, index) => (
+                                <option key={index} value={slot}>
+                                    {slot}
+                                </option>
                             ))}
                         </select>
                         <input
                             type="text"
-                            placeholder="Your name"
+                            value={user.displayName}
                             className="input input-bordered w-full "
+                            disabled
                         />
                         <input
                             type="email"
-                            placeholder="Your email"
+                            value={user.email}
                             className="input input-bordered w-full "
+                            disabled
                         />
                         <input
                             type="number"

@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -11,8 +14,9 @@ const SignUp = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [createUserWithEmailAndPassword, user, loading, error] =
-        useCreateUserWithEmailAndPassword(auth);
+        useCreateUserWithEmailAndPassword(auth, { updateProfile });
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -23,17 +27,17 @@ const SignUp = () => {
         }
     }, [from, navigate, user]);
 
-    if (loading) {
+    if (loading || updating) {
         return <p>Loading....</p>;
     }
     let errMessage;
-    if (error) {
+    if (error || updateError) {
         return (errMessage = <p className="text-red-500">{error.message}</p>);
     }
 
-    const onSubmit = (data) => {
-        console.log(data);
-        createUserWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async (data) => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
     };
     return (
         <div className="card mx-auto lg:max-w-lg bg-base-100 shadow-xl mt-4">

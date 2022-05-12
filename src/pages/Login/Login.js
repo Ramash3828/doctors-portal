@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 import SocialLogin from "./SocialLogin";
 
 const Login = () => {
@@ -9,9 +11,31 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, user]);
+
+    if (loading) {
+        return <p>Loading....</p>;
+    }
+    let errMessage;
+    if (error) {
+        errMessage = (
+            <p className="text-red-500 text-left my-2">{error.message}</p>
+        );
+    }
 
     const onSubmit = (data) => {
-        console.log(data);
+        signInWithEmailAndPassword(data.email, data.password);
     };
     return (
         <div className="card mx-auto lg:max-w-lg bg-base-100 shadow-xl mt-4">
@@ -84,6 +108,7 @@ const Login = () => {
                         value="Login"
                         className="btn  w-full text-white"
                     />
+                    {errMessage}
                 </form>
                 <p className="text-left">
                     New to Doctors Portal?{" "}

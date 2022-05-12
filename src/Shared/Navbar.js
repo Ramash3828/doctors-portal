@@ -28,7 +28,7 @@ const Navbar = () => {
                         onClick={() => {
                             auth.signOut(() => Navigate("/"));
                         }}
-                        class="btn btn-ghost"
+                        className="btn btn-ghost"
                     >
                         Log Out
                     </button>
