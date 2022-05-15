@@ -1,11 +1,48 @@
 import { format } from "date-fns";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
-const BookingModal = ({ treatment, selected }) => {
+const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
     const [user] = useAuthState(auth);
-    const { name, slots } = treatment;
+
+    const { _id, name, slots } = treatment;
+
+    const handleBooking = (event) => {
+        event.preventDefault();
+        const slot = event.target.slot.value;
+        const formatedDate = format(selected, "PP");
+        const booking = {
+            bookingId: _id,
+            treatmentName: name,
+            patientName: user.displayName,
+            patientEmail: user.email,
+            slot,
+            date: formatedDate,
+            phone: event.target.phone.value,
+        };
+        const url = `http://localhost:5000/booking`;
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(booking),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    refetch();
+                    setTreatment(null);
+                    return toast.success(data.message);
+                }
+                refetch();
+                setTreatment(null);
+                toast.error(data.message);
+            });
+    };
+
     return (
         <div>
             <input
@@ -24,7 +61,10 @@ const BookingModal = ({ treatment, selected }) => {
                     <h2 className="card-title text-secondary">
                         Booking for {name}
                     </h2>
-                    <form className="grid grid-cols-1 gap-y-2 mx-auto w-full mt-7">
+                    <form
+                        onSubmit={handleBooking}
+                        className="grid grid-cols-1 gap-y-2 mx-auto w-full mt-7"
+                    >
                         <input
                             disabled
                             type="text"
@@ -56,13 +96,14 @@ const BookingModal = ({ treatment, selected }) => {
                         />
                         <input
                             type="number"
+                            name="phone"
                             placeholder="Phone number"
                             className="input input-bordered w-full "
                         />
                         <input
                             type="submit"
                             value="Submit"
-                            className="input input-bordered w-full  uppercase text-white font-bold bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary border-0 "
+                            className="input input-bordered w-full  uppercase cursor-pointer text-white font-bold bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary border-0 "
                         />
                     </form>
                 </div>

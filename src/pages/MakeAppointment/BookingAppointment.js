@@ -2,6 +2,7 @@ import React from "react";
 
 const BookingAppointment = ({ timerSlot, setTreatment }) => {
     const { name, slots } = timerSlot;
+
     return (
         <div className="card md:max-w-md bg-base-100 shadow-xl">
             <div className="card-body items-center text-center">
