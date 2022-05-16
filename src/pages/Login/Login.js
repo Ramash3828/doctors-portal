@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "./SocialLogin";
+import Loading from "../../Loading";
 
 const Login = () => {
     const {
@@ -25,7 +26,7 @@ const Login = () => {
     }, [from, navigate, user]);
 
     if (loading) {
-        return <p>Loading....</p>;
+        return <Loading></Loading>;
     }
     let errMessage;
     if (error) {

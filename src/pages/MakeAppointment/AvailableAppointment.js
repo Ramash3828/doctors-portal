@@ -3,6 +3,7 @@ import React from "react";
 
 import { useState } from "react";
 import { useQuery } from "react-query";
+import Loading from "../../Loading";
 import BookingAppointment from "./BookingAppointment";
 import BookingModal from "./BookingModal";
 
@@ -20,16 +21,8 @@ const AvailableAppointment = ({ selected }) => {
         )
     );
     if (isLoading) {
-        return <h2 className="text-center">Loading....</h2>;
+        return <Loading />;
     }
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/available?date=${formatedDate}`)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             setTimerSlots(data);
-    //         });
-    // }, [formatedDate]);
 
     return (
         <section className="my-24 text-center">

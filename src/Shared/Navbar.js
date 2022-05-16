@@ -22,6 +22,7 @@ const Navbar = () => {
             <li>
                 <NavLink to="/contact">Contact Us</NavLink>
             </li>
+            <li>{user && <NavLink to="/dashboard">Dashboard</NavLink>}</li>
             <li>
                 {user ? (
                     <button
@@ -69,6 +70,12 @@ const Navbar = () => {
             <div className="navbar-center hidden md:flex ">
                 <ul className="menu menu-horizontal p-0">{navBar}</ul>
             </div>
+            <label
+                htmlFor="my-drawer-2"
+                className="btn btn-primary drawer-button lg:hidden"
+            >
+                Dashboard
+            </label>
         </div>
     );
 };
