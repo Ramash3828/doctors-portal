@@ -1,6 +1,7 @@
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, Navigate, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../firebase.init";
 
 const Navbar = () => {
@@ -27,7 +28,7 @@ const Navbar = () => {
                 {user ? (
                     <button
                         onClick={() => {
-                            auth.signOut(() => Navigate("/"));
+                            signOut(auth);
                             localStorage.removeItem("accessToken");
                         }}
                         className="btn btn-ghost"

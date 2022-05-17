@@ -4,18 +4,33 @@ import { useState } from "react";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../../Loading";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const MyAppointment = () => {
     const [appointment, setAppointment] = useState([]);
     const [user, loading] = useAuthState(auth);
-
+    const navigate = useNavigate();
     useEffect(() => {
-        fetch(`http://localhost:5000/appointment?patientEmail=${user.email}`)
-            .then((res) => res.json())
+        fetch(`http://localhost:5000/myappointment?email=${user.email}`, {
+            method: "GET",
+            headers: {
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then((res) => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    navigate("/login");
+                }
+                return res.json();
+            })
             .then((data) => {
                 setAppointment(data);
+                toast.error(data.message);
             });
-    }, [user]);
+    }, [user, navigate]);
 
     if (loading) {
         return <Loading />;
@@ -39,7 +54,7 @@ const MyAppointment = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointment.map((booking, index) => {
+                        {appointment?.map((booking, index) => {
                             return (
                                 <tr key={booking._id}>
                                     <td>{index + 1}</td>

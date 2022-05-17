@@ -24,6 +24,9 @@ const Dashboard = () => {
                     <li>
                         <NavLink to="/dashboard/myreviews">My Reviews</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/dashboard/allusers">All Users</NavLink>
+                    </li>
                 </ul>
             </div>
         </div>
