@@ -42,6 +42,7 @@ function App() {
                         </RequireAuth>
                     }
                 >
+                    <Route index element={<MyAppointment />} />
                     <Route path="myappointment" element={<MyAppointment />} />
                     <Route path="myreviews" element={<MyReviews />} />
                 </Route>
