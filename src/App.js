@@ -15,6 +15,7 @@ import MyAppointment from "./pages/Dashboard/MyAppointment";
 import MyReviews from "./pages/Dashboard/MyReviews";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import AllUsers from "./pages/Dashboard/AllUsers";
+import RequireAdmin from "./RequireAdmin";
 // import Loading from "./Loading";
 
 function App() {
@@ -46,7 +47,14 @@ function App() {
                     <Route index element={<MyAppointment />} />
                     <Route path="myappointment" element={<MyAppointment />} />
                     <Route path="myreviews" element={<MyReviews />} />
-                    <Route path="allusers" element={<AllUsers />} />
+                    <Route
+                        path="allusers"
+                        element={
+                            <RequireAdmin>
+                                <AllUsers />
+                            </RequireAdmin>
+                        }
+                    />
                 </Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<SignUp />}></Route>

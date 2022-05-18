@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "./SocialLogin";
 import Loading from "../../Loading";
-import useToken from "../../useToken";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
     const {

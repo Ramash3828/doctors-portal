@@ -6,8 +6,10 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
+
 import Loading from "../../Loading";
-import useToken from "../../useToken";
+
 import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
