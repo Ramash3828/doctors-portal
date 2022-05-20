@@ -29,11 +29,18 @@ const Dashboard = () => {
                         <NavLink to="/dashboard/myreviews">My Reviews</NavLink>
                     </li>
                     {admin && (
-                        <li>
-                            <NavLink to="/dashboard/allusers">
-                                All Users
-                            </NavLink>
-                        </li>
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/allusers">
+                                    All Users
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/adddocotrs">
+                                    Add Doctors
+                                </NavLink>
+                            </li>
+                        </>
                     )}
                 </ul>
             </div>
