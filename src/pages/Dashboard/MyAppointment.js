@@ -16,7 +16,7 @@ const MyAppointment = () => {
         fetch(`http://localhost:5000/myappointment?email=${user.email}`, {
             method: "GET",
             headers: {
-                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
         })
             .then((res) => {

@@ -17,6 +17,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import AllUsers from "./pages/Dashboard/AllUsers";
 import RequireAdmin from "./RequireAdmin";
 import AddDoctors from "./pages/Dashboard/AddDoctors";
+import ManageDoctors from "./pages/Dashboard/ManageDoctors";
 
 function App() {
     return (
@@ -60,6 +61,14 @@ function App() {
                         element={
                             <RequireAdmin>
                                 <AddDoctors />
+                            </RequireAdmin>
+                        }
+                    />
+                    <Route
+                        path="manageDoctor"
+                        element={
+                            <RequireAdmin>
+                                <ManageDoctors />
                             </RequireAdmin>
                         }
                     />

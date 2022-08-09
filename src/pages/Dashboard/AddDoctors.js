@@ -42,7 +42,7 @@ const AddDoctors = () => {
                         body: JSON.stringify(doctor),
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
-                            authorization: `bearer ${localStorage.getItem(
+                            authorization: `Bearer ${localStorage.getItem(
                                 "accessToken"
                             )}`,
                         },
@@ -129,7 +129,7 @@ const AddDoctors = () => {
                                 </span>
                             </label>
                             <select
-                                {...register("Specialty")}
+                                {...register("specialty")}
                                 className="select w-full max-w-lg"
                             >
                                 {services.map((service) => (

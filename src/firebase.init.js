@@ -19,3 +19,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default auth;
+
+REACT_APP_apiKey=AIzaSyC8Y_c-x1mxkuY42I0zhOx7plMQFhgn060,
+REACT_APP_authDomain=motorcycle-parts-manufacturer.firebaseapp.com
+REACT_APP_projectId=motorcycle-parts-manufacturer,
+REACT_APP_storageBucket=motorcycle-parts-manufacturer.appspot.com
+REACT_APP_messagingSenderId=672966663909
+REACT_APP_appId=1:672966663909:web:8fc547db3467c618b0be0c

@@ -7,7 +7,7 @@ const UsersRow = ({ user, refetch, index }) => {
         fetch(`http://localhost:5000/user/admin/${email}`, {
             method: "PUT",
             headers: {
-                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
         })
             .then((res) => {

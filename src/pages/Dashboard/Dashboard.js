@@ -40,6 +40,11 @@ const Dashboard = () => {
                                     Add Doctors
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/dashboard/manageDoctor">
+                                    Manage Doctors
+                                </NavLink>
+                            </li>
                         </>
                     )}
                 </ul>

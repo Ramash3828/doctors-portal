@@ -14,7 +14,7 @@ const AllUsers = () => {
         fetch(`http://localhost:5000/users`, {
             method: "GET",
             headers: {
-                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
         }).then((res) => res.json())
     );
